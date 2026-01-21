@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { DemoModal } from '@/components/DemoModal'
 import Image from 'next/image'
 import { 
   ArrowRight, ChevronDown, ChevronUp, X, Menu,
@@ -18,6 +19,7 @@ const rotatingWords = [
 ]
 
 export default function Home() {
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [expandedLayer, setExpandedLayer] = useState<number | null>(0)
   const [expandedAgent, setExpandedAgent] = useState<number | null>(0)
@@ -253,7 +255,9 @@ export default function Home() {
               <a href="#testimonials" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Stories</a>
             </div>
 
-            <button className="px-6 py-2.5 bg-gradient-to-r from-[#1E88E5] via-[#42A5F5] to-[#1565C0] text-white rounded-lg font-semibold text-sm tracking-wide hover:shadow-lg hover:shadow-[#1E88E5]/30 transition-all duration-300 hover:scale-105 active:scale-95 border border-white/10">
+            <button 
+              onClick={() => setIsDemoModalOpen(true)}
+              className="px-6 py-2.5 bg-gradient-to-r from-[#1E88E5] via-[#42A5F5] to-[#1565C0] text-white rounded-lg font-semibold text-sm tracking-wide hover:shadow-lg hover:shadow-[#1E88E5]/30 transition-all duration-300 hover:scale-105 active:scale-95 border border-white/10">
               Get a Demo
             </button>
           </div>
@@ -299,7 +303,9 @@ export default function Home() {
               </p>
 
               <div className="pt-2 animate-delay-300">
-                <button className="px-8 py-4 bg-gradient-to-r from-[#1E88E5] via-[#42A5F5] to-[#1565C0] text-white rounded-lg font-semibold text-base md:text-lg tracking-wide hover:shadow-xl hover:shadow-[#1E88E5]/30 transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:ring-offset-2 transform transition-bounce">
+                <button 
+                  onClick={() => setIsDemoModalOpen(true)}
+                  className="px-8 py-4 bg-gradient-to-r from-[#1E88E5] via-[#42A5F5] to-[#1565C0] text-white rounded-lg font-semibold text-base md:text-lg tracking-wide hover:shadow-xl hover:shadow-[#1E88E5]/30 transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:ring-offset-2 transform transition-bounce">
                   Get a Demo →
                 </button>
               </div>
@@ -712,7 +718,7 @@ export default function Home() {
             </div>
             <div className="pt-2">
               <p className="text-base md:text-lg text-gray-300 leading-relaxed bg-sardine-dark-blue border border-sardine-stats-blue/10 rounded-lg p-6 md:p-8 transition-smooth">
-                Aria AI doesn't just handle calls—it provides intelligent, HIPAA-compliant patient interactions with sub-second response times. Get natural conversations that improve patient satisfaction while reducing staff workload.
+                Aria AI doesn&apos;t just handle calls—it provides intelligent, HIPAA-compliant patient interactions with sub-second response times. Get natural conversations that improve patient satisfaction while reducing staff workload.
               </p>
             </div>
           </div>
@@ -1102,7 +1108,7 @@ export default function Home() {
             <div className={`bg-gradient-to-br from-[#1E88E5] via-[#42A5F5] to-[#E8F4F8] rounded-2xl p-8 md:p-10 lg:p-12 text-white hover-lift transition-smooth ${
               isVisible['testimonials'] ? 'animate-slide-in-left' : 'opacity-0'
             }`}>
-              <div className="text-5xl md:text-6xl font-bold mb-4 md:mb-6 opacity-50">"</div>
+              <div className="text-5xl md:text-6xl font-bold mb-4 md:mb-6 opacity-50">&quot;</div>
               <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 md:mb-8 leading-relaxed tracking-tight">
                 {testimonials[0].quote}
               </h2>
@@ -1157,7 +1163,9 @@ export default function Home() {
               Intelligent AI Voice Assistant for medical clinics powered by Aria’s clinical voice engine. Deploy Aria AI in your clinic environment and start providing sub-second response times with HIPAA-compliant patient interactions.
             </p>
             <div className="pt-2">
-                <button className="px-8 md:px-10 py-4 md:py-5 bg-gradient-to-r from-[#1E88E5] via-[#42A5F5] to-[#1565C0] text-white rounded-lg font-semibold text-base md:text-lg hover:shadow-xl hover:shadow-[#1E88E5]/30 transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:ring-offset-2 transform transition-bounce">
+                <button 
+                  onClick={() => setIsDemoModalOpen(true)}
+                  className="px-8 md:px-10 py-4 md:py-5 bg-gradient-to-r from-[#1E88E5] via-[#42A5F5] to-[#1565C0] text-white rounded-lg font-semibold text-base md:text-lg hover:shadow-xl hover:shadow-[#1E88E5]/30 transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:ring-offset-2 transform transition-bounce">
                   Get a Demo →
                 </button>
             </div>
@@ -1255,6 +1263,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
     </main>
   )
 }
